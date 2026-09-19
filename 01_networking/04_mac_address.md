@@ -43,15 +43,4 @@ When a device wants to send data:
 - It uses ARP to resolve that IP address into a MAC address.
 - The frame is then delivered using MAC addressing.
 
-## Why We Need MAC Address
-
-Even though devices communicate using IP addresses, actual data transmission inside a local network happens using MAC addresses.
-
-IP addresses identify devices logically across networks, but switches inside a LAN forward data based on MAC addresses.
-
-When a device sends data:
-- The IP address identifies the destination device.
-- ARP resolves the IP address into a MAC address.
-- The switch uses the MAC address to forward the frame to the correct device.
-
-Without MAC addresses, devices would not be able to deliver frames correctly within a local network.
+- Without MAC addresses, a switch inside a LAN would have no way to deliver that frame to the correct physical device — it forwards based on MAC address, not IP.
