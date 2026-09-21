@@ -153,6 +153,16 @@ From this lab:
 
 ---
 
+## Security Relevance
+
+Sequence and acknowledgment number tracking is how analysts detect:
+
+- **TCP session hijacking**, where an attacker injects data using a guessed or predicted sequence number  
+- Abnormal byte-count progression that does not match expected SEQ/ACK behavior  
+- Reconstructing application-layer data from a capture (Wireshark's Follow TCP Stream uses this exact mechanism).
+- Understanding exact sequence based reassembly matters for a specific evasion technique. An attacker can send overlapping TCP segments, two packets claiming to cover the same sequence range but carrying different data. Different operating systems resolve that overlap differently, some keep the first segment received, some keep the last. A network monitoring tool can reconstruct the stream one way while the real target machine reconstructs it another way, and an attacker can hide malicious content in that gap. This is a known IDS evasion technique, and it only makes sense once you actually understand how SEQ based reassembly works.
+
+---
 ## Conclusion
 
 TCP ensures reliable and ordered data transmission by tracking each byte using sequence numbers and confirming delivery through acknowledgment numbers.  

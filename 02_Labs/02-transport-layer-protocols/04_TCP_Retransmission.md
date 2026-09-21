@@ -123,7 +123,15 @@ This occurs because the sender did not receive an acknowledgment for the origina
 - TCP automatically recovers from packet loss  
 
 ---
+## Security Relevance
 
+Retransmission behavior is a real indicator analysts monitor for network health and anomalies:
+
+- Excessive retransmissions can indicate a failing or overloaded link, congestion, or a DoS condition  
+- Repeated retransmissions can also occur when an attacker is deliberately dropping packets in an adversary-in-the-middle position  
+- Knowing what normal retransmission looks like (same SEQ and length, marked as [TCP Retransmission]) is the baseline needed to recognize when retransmission behavior is abnormal  
+
+---
 ## Conclusion
 
 TCP retransmission is a reliability mechanism that ensures data delivery even in the presence of packet loss.  

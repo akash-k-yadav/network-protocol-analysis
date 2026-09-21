@@ -120,7 +120,14 @@ If:
 - Window size directly controls sender behavior  
 
 ---
+## Security Relevance
 
+Window behavior matters for spotting resource exhaustion conditions:
+
+- A Zero Window DoS is a real attack technique where an attacker repeatedly advertises window size 0 to stall a server side connection and tie up resources, similar in effect to Slowloris  
+- Keep-alive packets during a zero window state help distinguish a legitimate buffer pressure situation from a connection being deliberately held open  
+
+---
 ## Conclusion
 
 TCP flow control ensures efficient data transmission by allowing the receiver to regulate how much data can be sent.  
