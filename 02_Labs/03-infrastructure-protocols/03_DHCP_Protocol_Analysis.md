@@ -140,7 +140,11 @@ The ACK finalizes the process and assigns the IP along with all required network
 - Lease time and renewal timers control IP usage duration  
 
 ---
+## Security Relevance
 
+**Rogue DHCP server:** the Offer and ACK packets in this lab show a Router (default gateway) and DNS server field being handed to the client. An attacker running an unauthorized DHCP server on the same network races the legitimate server to answer a client's Discover broadcast first. If the attacker's Offer wins, they can hand the client a malicious gateway to enable a man in the middle position, or a malicious DNS server to enable the DNS spoofing scenario covered earlier. Since Transaction ID ties one Discover, Offer, Request, and ACK sequence together, seeing two different Offers with different Server Identifiers for the same Transaction ID is a direct sign of a second, unauthorized DHCP server responding on the network.
+
+---
 ## Conclusion
 
 DHCP dynamically assigns IP addresses and network configuration through a negotiation process.  

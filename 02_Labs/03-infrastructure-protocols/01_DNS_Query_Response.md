@@ -111,7 +111,15 @@ After TTL expires:
 - TTL controls how long DNS responses are cached  
 
 ---
+## Security Relevance
 
+- DNS is almost always allowed through firewalls, which makes it a common channel for abuse. Two things worth watching for:
+
+**DNS tunneling**: an attacker encodes data or C2 commands inside the subdomain portion of a query, since that field can carry a lot of arbitrary text. Indicators include unusually long or random looking subdomain names, high query volume or repeated queries to the same base domain, and queries that resolve to no answer.
+
+**DNS spoofing or a rogue resolver on the network**: this lab shows Transaction ID matching one query to exactly one legitimate response. Seeing two different responses for the same Transaction ID, or a response coming from a source IP that does not match the actual configured DNS server, is a sign of cache poisoning or a rogue device on the LAN answering DNS queries it should not be answering, usually set up through ARP spoofing first.
+
+---
 ## Conclusion
 
 DNS resolves domain names into IP addresses using a query-response mechanism over UDP.  

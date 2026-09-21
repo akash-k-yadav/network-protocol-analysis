@@ -155,7 +155,13 @@ Inspect DNS query and response packets in Wireshark and analyze record types, re
 - Some domains (like YouTube) do not directly resolve to IP and require additional resolution steps  
 
 ---
+## Security Relevance
 
+**MX record manipulation:** this lab shows a real load balanced MX setup with priority values (10, 20, 30, 40). Knowing what a legitimate multi MX layout looks like is the baseline for spotting an unexpected or added MX record. Attackers who compromise a domain's DNS, through registrar takeover or a compromised DNS provider account, can insert a rogue MX record to redirect a target's incoming email to an attacker controlled mail server. This is real infrastructure used for business email compromise and phishing reply interception.
+
+**CNAME and subdomain takeover:** this lab shows `www.youtube.com` resolving through a CNAME to another domain. This is the same pattern behind a known vulnerability class called subdomain takeover. A company points a subdomain via CNAME to a third party service, later deletes that service without removing the DNS record, and an attacker registers the now abandoned resource, effectively taking control of content served under that subdomain. Checking CNAME targets for dangling or unclaimed destinations is a real thing analysts and pentesters look for.
+
+---
 ## Conclusion
 
 DNS resolution involves multiple record types, each serving a specific role in mapping domain names to services.  
