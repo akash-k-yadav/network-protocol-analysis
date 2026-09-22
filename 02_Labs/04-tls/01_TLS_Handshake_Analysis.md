@@ -258,7 +258,13 @@ These values are used together to derive session keys.
 - After key exchange, symmetric encryption is used for data transmission due to better performance  
 
 ---
+## Security Relevance
 
+1. TLS encrypting the connection is also useful for an attacker. Modern C2 frameworks and malware increasingly use TLS instead of plaintext, since encryption is treated as a baseline for normal traffic and helps the connection blend in. It also slows down incident response, since an analyst cannot directly see what command or data is being exchanged with a C2 server once encryption starts.
+
+2. Even a fully encrypted TLS session leaks metadata that is useful for detection. This lab's own Certificate Details already show the domain identity in cleartext (Subject: *.google.com) before encryption even begins. Beyond that, the specific combination of TLS version, cipher suite list, and extensions in the Client Hello forms a fingerprint known as JA3, this lab's Client Hello shows the client offering 87 cipher suites, exactly the kind of data JA3 is built from. This lets analysts identify known malware families or C2 frameworks by their TLS library's signature, without decrypting anything.
+
+---
 ## Conclusion
 
 TLS 1.2 establishes secure communication through structured message exchange and key negotiation.  
