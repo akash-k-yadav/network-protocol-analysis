@@ -193,12 +193,10 @@ File transfer occurs over encrypted TLS records, preventing visibility of data.
 
 ---
 
-## Security Analysis
+## Security Relevance
 
-- Credentials are not visible  
-- Commands after AUTH TLS are hidden  
-- File content is encrypted  
-- Only traffic patterns remain observable  
+- Credentials and commands are hidden after AUTH TLS, and file content is encrypted, leaving only traffic patterns observable. 
+- **The real weakness here is specific to Explicit FTPS:** this session starts as plaintext FTP on port 21 and only upgrades to TLS after the client sends AUTH TLS. An on-path attacker can strip or block that AUTH TLS command, and depending on how strict the client is, the session can continue in plaintext instead of failing. This is the same downgrade concept behind SSL stripping, and it is exactly why Implicit FTPS on port 990 exists, encrypted from the start of the connection with no plaintext negotiation phase to attack.
 
 ---
 

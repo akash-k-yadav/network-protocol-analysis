@@ -176,12 +176,10 @@ Session flow:
 
 ---
 
-## Security Analysis
+## Security Relevance
 
-- Credentials are fully encrypted  
-- File contents are not visible in packet capture  
-- Strong protection against interception  
-- Only traffic patterns remain observable  
+- Credentials and file content are fully encrypted and not visible in this capture. 
+- But this lab shows that SFTP is not perfectly opaque, file transfer versus authentication was identified purely from packet size and flow direction, without seeing any content. Anyone positioned to observe the traffic, not just decrypt it, can infer things like a large file moving from server to client at a given time, from metadata alone. The bigger weak point is host key trust, SSH does not use a certificate authority model like TLS. If a user blindly accepts an unknown or changed host key, common in real environments, an on-path attacker can MITM the session regardless of how strong the encryption is.
 
 ---
 

@@ -192,11 +192,10 @@ Observed commands:
 
 ---
 
-## Security Analysis
+## Security Relevance
 
-- Credentials (username/password) are visible in plaintext  
-- File contents are visible in packet capture  
-- No encryption is used in FTP  
+- Credentials and file content are visible in plaintext in this capture, making FTP vulnerable to interception.
+- **Active mode behavior shown in this lab has a specific historical weakness**: in Active mode, the client tells the server a port and the server initiates a connection back to the client. Attackers have abused this using the FTP Bounce Attack, manipulating the PORT command to make the server connect to a third party IP or port instead of back to the real client, using the FTP server as a proxy to reach internal hosts that would otherwise be firewalled off. This is a major reason Passive mode is now the standard.
 
 ---
 
