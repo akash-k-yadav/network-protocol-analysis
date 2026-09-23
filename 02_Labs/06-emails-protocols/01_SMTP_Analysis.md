@@ -277,12 +277,10 @@ Session flow:
 
 ---
 
-## Security Analysis
+## Security Relevance
 
-- Sender identity (MAIL FROM) can be spoofed  
-- Email content is exposed in transit  
-- No confidentiality or integrity protection  
-- Susceptible to interception and manipulation  
+- The MAIL FROM command sets the envelope sender, and this is separate from the visible From header inside the email body. This lab's own capture shows that separation directly. This is the actual mechanism behind most email spoofing and phishing, an attacker can set MAIL FROM to something that will not get flagged while forging the visible From header to look like a trusted sender. The real defenses against this are SPF, DKIM, and DMARC, all three are published as DNS TXT records, the same record type already flagged in this repo as commonly abused for DNS tunneling.
+
 
 ---
 

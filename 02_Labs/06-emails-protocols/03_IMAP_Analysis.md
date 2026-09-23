@@ -242,14 +242,11 @@ Session flow:
 
 ---
 
-## Security Analysis
+## Security Relevance
 
-- Credentials exposed during LOGIN  
-- Email content visible when using plaintext IMAP  
-- Supports STARTTLS for secure communication (not used here)  
-- Vulnerable without encryption  
+- This session supports STARTTLS but it was not used here, starting in plaintext with encryption as an optional upgrade mid session. This is the exact setup for a real, documented vulnerability class called STARTTLS stripping. An on-path attacker can strip the server's STARTTLS capability advertisement or block the command itself, causing the client to silently continue in plaintext instead of failing. Real vulnerabilities of this kind have been found across multiple mail clients and servers.
 
----
+----
 
 ## Note
 

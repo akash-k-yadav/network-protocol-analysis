@@ -219,12 +219,9 @@ Session flow:
 
 ---
 
-## Security Analysis
+## Security Relevance
 
-- Encryption protects credentials and email content  
-- Prevents interception and data leakage  
-- Eliminates protocol-level visibility  
-- Analysis must rely on behavioral patterns  
+- Encryption here protects credentials and content on the wire, but it does not protect against the SMTP spoofing issue at all. The MAIL FROM and From header mismatch works exactly the same over an encrypted connection, TLS wraps the same envelope structure without validating who is actually sending. Encrypted and authenticated are different properties, and treating them as the same thing is a common mistake.
 
 ---
 

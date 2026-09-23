@@ -233,12 +233,9 @@ Session flow:
 
 ---
 
-## Security Analysis
+## Security Relevance
 
-- Credentials exposed during authentication  
-- Email content visible in network traffic  
-- No encryption or integrity protection  
-- Vulnerable to interception and credential theft  
+- Beyond credentials being exposed in plaintext, USER and PASS represent legacy basic authentication. This is a real, actively used attack technique, organizations roll out MFA on their main web login but often forget that legacy protocol endpoints like POP3 still accept a plain username and password with no MFA prompt at all. Attackers specifically target these legacy endpoints to bypass an organization's MFA policy entirely.
 
 ---
 
